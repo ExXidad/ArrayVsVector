@@ -15,8 +15,7 @@ int main()
             size = pow(2, multiplier);
             std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
 
-            std::vector<std::vector<std::vector<int>>>
-                    vector(size, std::vector<std::vector<int>>(size, std::vector<int>(size, 0)));
+            Arr arr(size, size, size);
 
             std::mt19937 gen(time(nullptr));
             std::uniform_int_distribution<> uid(0, 1000000);
@@ -24,7 +23,7 @@ int main()
             for (int i = 0; i < size; ++i) {
                 for (int j = 0; j < size; ++j) {
                     for (int k = 0; k < size; ++k) {
-                        vector[i][j][k] = uid(gen);
+                        arr.setIJK(i, j, k, uid(gen));
                     }
                 }
             }
@@ -33,7 +32,7 @@ int main()
 
             timeTaken += std::chrono::duration_cast<std::chrono::milliseconds>(end - begin).count();
         }
-        std::cout << size << "\t" << timeTaken / attempts << std::endl
+        std::cout << size << "\t" << timeTaken / attempts << std::endl;
     }
 
     return 0;

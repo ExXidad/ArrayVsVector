@@ -10,16 +10,13 @@ Arr::Arr(const long int &m, const long int &n, const long int &k)
     this->n = n;
     this->k = k;
 
-    std::mt19937 gen(time(nullptr));
-    std::uniform_int_distribution<> uid(0,1000000);
-
     data = new int **[m];
     for (int i = 0; i < m; ++i) {
         data[i] = new int *[n];
         for (int j = 0; j < n; ++j) {
             data[i][j] = new int[k];
             for (int l = 0; l < k; ++l) {
-                data[i][j][l] = uid(gen);
+                data[i][j][l] = 0;
             }
         }
     }
@@ -53,6 +50,11 @@ Arr::~Arr()
         }
         delete [] data[i];
     }
+}
+
+void Arr::setIJK(const long int &i, const long int &j, const long int &k, const int &val)
+{
+    data[i][j][k] = val;
 }
 
 std::ostream &operator<<(std::ostream &ostream, Arr &arr)

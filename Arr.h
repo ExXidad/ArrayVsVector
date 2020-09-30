@@ -26,6 +26,8 @@ public:
 
     int getK() const;
 
+    void setIJK(const long int &i, const long int &j, const long int &k, const int &val);
+
 public:
     Arr(const long int &m, const long int &n, const long int &k);
     ~Arr();
