@@ -7,15 +7,17 @@
 int main()
 {
 
-    for (int multiplier = 0; multiplier < 10; ++multiplier) {
+    for (int multiplier = 0; multiplier < 11; ++multiplier) {
         long int size = 0;
         long int timeTaken = 0;
-        int attempts = 20;
+        int attempts = 3;
         for (int attempt = 0; attempt < attempts; ++attempt) {
             size = pow(2, multiplier);
             std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
 
-            Arr arr(size, size, size);
+//            Arr arr(size, size, size);
+            std::vector<std::vector<std::vector<int>>>
+                    vector(size, std::vector<std::vector<int>>(size, std::vector<int>(size, 0)));
 
             std::mt19937 gen(time(nullptr));
             std::uniform_int_distribution<> uid(0, 1000000);
@@ -23,7 +25,8 @@ int main()
             for (int i = 0; i < size; ++i) {
                 for (int j = 0; j < size; ++j) {
                     for (int k = 0; k < size; ++k) {
-                        arr.setIJK(i, j, k, uid(gen));
+//                        arr.setIJK(i, j, k, uid(gen));
+                        vector[i][j][k] = uid(gen);
                     }
                 }
             }
